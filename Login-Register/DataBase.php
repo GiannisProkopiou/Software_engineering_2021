@@ -1,6 +1,6 @@
 <?php
 require "DataBaseConfig.php";
-
+//Test
 class DataBase
 {
     public $connect;
