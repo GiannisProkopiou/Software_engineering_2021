@@ -4,12 +4,20 @@ package Main_package;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-
 public class SignInScreen extends javax.swing.JFrame {
 
     
     public SignInScreen() {
         initComponents();
+        
+    }
+    
+    //methods
+    public void homeScreen() {
+        
+        //go back to home screen
+        new HomeScreen().setVisible(true);
+        dispose();
     }
 
     @SuppressWarnings("unchecked")
@@ -24,6 +32,7 @@ public class SignInScreen extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         signIn_button = new javax.swing.JButton();
         forgotPassword_button = new javax.swing.JButton();
+        back_to_home_screen_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sign in");
@@ -47,6 +56,7 @@ public class SignInScreen extends javax.swing.JFrame {
 
         singIn_email_txt.setBackground(new java.awt.Color(240, 240, 240));
         singIn_email_txt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        singIn_email_txt.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         singIn_email_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 singIn_email_txtActionPerformed(evt);
@@ -55,6 +65,7 @@ public class SignInScreen extends javax.swing.JFrame {
 
         jPasswordField1.setBackground(new java.awt.Color(240, 240, 240));
         jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPasswordField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         signIn_button.setBackground(new java.awt.Color(51, 51, 51));
         signIn_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -72,6 +83,17 @@ public class SignInScreen extends javax.swing.JFrame {
         forgotPassword_button.setForeground(new java.awt.Color(191, 0, 0));
         forgotPassword_button.setText("Forgot Password;");
         forgotPassword_button.setBorder(null);
+
+        back_to_home_screen_button.setBackground(new java.awt.Color(51, 51, 51));
+        back_to_home_screen_button.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        back_to_home_screen_button.setForeground(new java.awt.Color(255, 255, 255));
+        back_to_home_screen_button.setText("<");
+        back_to_home_screen_button.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        back_to_home_screen_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_to_home_screen_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout singIn_panelLayout = new javax.swing.GroupLayout(singIn_panel);
         singIn_panel.setLayout(singIn_panelLayout);
@@ -96,13 +118,17 @@ public class SignInScreen extends javax.swing.JFrame {
                             .addComponent(singIn_email_txt)
                             .addComponent(jPasswordField1))))
                 .addContainerGap(110, Short.MAX_VALUE))
+            .addGroup(singIn_panelLayout.createSequentialGroup()
+                .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         singIn_panelLayout.setVerticalGroup(
             singIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(singIn_panelLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(singInScreen_welcomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
                 .addGroup(singIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(singIn_email_label)
                     .addComponent(singIn_email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -194,7 +220,12 @@ public class SignInScreen extends javax.swing.JFrame {
         }catch(Exception ex){JOptionPane.showMessageDialog(null, ex);}
     }//GEN-LAST:event_signIn_buttonActionPerformed
 
+    private void back_to_home_screen_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_to_home_screen_buttonActionPerformed
+        homeScreen();
+    }//GEN-LAST:event_back_to_home_screen_buttonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back_to_home_screen_button;
     private javax.swing.JButton forgotPassword_button;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton signIn_button;
