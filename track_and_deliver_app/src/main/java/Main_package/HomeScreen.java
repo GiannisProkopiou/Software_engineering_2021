@@ -132,6 +132,11 @@ public class HomeScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             new HomeScreen().setVisible(true);
         });
+        //testing
+        Customer c = new Customer("apos@gmail.com", "ak12345", 14122, 
+            6, "Trikoupi", "Athens", "Greece", "Apos",
+            "Konti", "6955", Subscription_state.BASIC);
+        System.out.println(c.getCountry());
     }
     
     //Initial app screen to choose register or singIn

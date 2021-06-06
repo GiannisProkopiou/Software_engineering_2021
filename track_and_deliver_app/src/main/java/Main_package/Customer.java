@@ -1,7 +1,8 @@
 
 package Main_package;
 
-//simple user
+//General user
+//Company and selperson extends Customer
 public class Customer {
     
     //attributes
