@@ -73,7 +73,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="110" max="32767" attributes="0"/>
+                  <EmptySpace pref="108" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="back_to_home_screen_button" min="-2" pref="60" max="-2" attributes="0"/>

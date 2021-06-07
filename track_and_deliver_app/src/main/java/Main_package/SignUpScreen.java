@@ -1,5 +1,6 @@
 package Main_package;
 
+import java.awt.Color;
 
 public class SignUpScreen extends javax.swing.JFrame {
 
@@ -34,16 +35,18 @@ public class SignUpScreen extends javax.swing.JFrame {
         street_number_label = new javax.swing.JLabel();
         street_number_textField = new javax.swing.JTextField();
         country_label1 = new javax.swing.JLabel();
-        street_number_textField1 = new javax.swing.JTextField();
+        street_textField = new javax.swing.JTextField();
         city_label = new javax.swing.JLabel();
         city_textField = new javax.swing.JTextField();
         singUp_button = new javax.swing.JButton();
+        missing_value_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sign up ");
         setResizable(false);
 
         singUpScreen_panel.setBackground(new java.awt.Color(51, 51, 51));
+        singUpScreen_panel.setToolTipText("FAIL");
 
         back_to_home_screen_button.setBackground(new java.awt.Color(51, 51, 51));
         back_to_home_screen_button.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -130,6 +133,7 @@ public class SignUpScreen extends javax.swing.JFrame {
         postal_code_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         postal_code_label.setForeground(new java.awt.Color(255, 255, 255));
         postal_code_label.setText("Postal code:");
+        postal_code_label.setToolTipText("sdasF");
 
         postal_code_textField.setBackground(new java.awt.Color(204, 204, 204));
         postal_code_textField.addActionListener(new java.awt.event.ActionListener() {
@@ -165,10 +169,10 @@ public class SignUpScreen extends javax.swing.JFrame {
         country_label1.setForeground(new java.awt.Color(255, 255, 255));
         country_label1.setText("Street:");
 
-        street_number_textField1.setBackground(new java.awt.Color(204, 204, 204));
-        street_number_textField1.addActionListener(new java.awt.event.ActionListener() {
+        street_textField.setBackground(new java.awt.Color(204, 204, 204));
+        street_textField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                street_number_textField1ActionPerformed(evt);
+                street_textFieldActionPerformed(evt);
             }
         });
 
@@ -188,19 +192,24 @@ public class SignUpScreen extends javax.swing.JFrame {
         singUp_button.setForeground(new java.awt.Color(191, 0, 0));
         singUp_button.setText("Submit");
         singUp_button.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        singUp_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                singUp_buttonActionPerformed(evt);
+            }
+        });
+
+        missing_value_label.setBackground(new java.awt.Color(51, 51, 51));
+        missing_value_label.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        missing_value_label.setForeground(new java.awt.Color(191, 0, 0));
+        missing_value_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout singUpScreen_panelLayout = new javax.swing.GroupLayout(singUpScreen_panel);
         singUpScreen_panel.setLayout(singUpScreen_panelLayout);
         singUpScreen_panelLayout.setHorizontalGroup(
             singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(singUpScreen_panelLayout.createSequentialGroup()
-                .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(singUpScreen_panelLayout.createSequentialGroup()
                 .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(singUpScreen_panelLayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(singUpScreen_welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(singUpScreen_panelLayout.createSequentialGroup()
                             .addContainerGap()
@@ -223,37 +232,45 @@ public class SignUpScreen extends javax.swing.JFrame {
                                         .addComponent(surname_textField)
                                         .addComponent(phone_number_textField))))))
                     .addGroup(singUpScreen_panelLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(singUpScreen_welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(singUpScreen_panelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(singUpScreen_panelLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(postal_code_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(singUpScreen_panelLayout.createSequentialGroup()
                                 .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(street_number_label, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(country_label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(singUpScreen_panelLayout.createSequentialGroup()
-                                        .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, singUpScreen_panelLayout.createSequentialGroup()
-                                                .addComponent(postal_code_label, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(108, 108, 108))
-                                            .addGroup(singUpScreen_panelLayout.createSequentialGroup()
-                                                .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(country_label1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(singUpScreen_panelLayout.createSequentialGroup()
-                                                        .addGap(10, 10, 10)
-                                                        .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                            .addComponent(street_number_textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(street_number_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addGap(84, 84, 84)))
+                                        .addGap(10, 10, 10)
+                                        .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(street_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(street_number_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(124, 124, 124)
+                                .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(city_label, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(singUpScreen_panelLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
                                         .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(country_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(city_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(country_ComboBox, 0, 174, Short.MAX_VALUE)
-                                    .addComponent(city_textField)
-                                    .addComponent(singUp_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                                            .addComponent(city_textField)
+                                            .addComponent(singUp_button, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)))))
+                            .addComponent(street_number_label)
+                            .addGroup(singUpScreen_panelLayout.createSequentialGroup()
+                                .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(singUpScreen_panelLayout.createSequentialGroup()
+                                        .addComponent(postal_code_label, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(148, 148, 148))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, singUpScreen_panelLayout.createSequentialGroup()
+                                        .addComponent(postal_code_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(124, 124, 124)))
+                                .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(country_label)
+                                    .addGroup(singUpScreen_panelLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(country_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(singUpScreen_panelLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(missing_value_label, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         singUpScreen_panelLayout.setVerticalGroup(
             singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +278,7 @@ public class SignUpScreen extends javax.swing.JFrame {
                 .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(singUpScreen_welcomeLabel)
-                .addGap(32, 32, 32)
+                .addGap(19, 19, 19)
                 .addComponent(email_label, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(email_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,24 +305,28 @@ public class SignUpScreen extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(postal_code_label, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(country_label, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(country_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(country_label, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(postal_code_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(country_ComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(postal_code_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(country_label1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(city_label, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(city_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(city_label, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(street_number_textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(street_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(city_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addComponent(street_number_label, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(5, 5, 5)
                 .addGroup(singUpScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(street_number_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(singUp_button))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(singUp_button, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(missing_value_label, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -328,6 +349,42 @@ public class SignUpScreen extends javax.swing.JFrame {
         new HomeScreen().setVisible(true);
         dispose();
     }
+    
+    public void SignUpMissingField() {
+
+        if(email_textField.getText().equals(""))
+            email_textField.setBackground(new Color(191, 0, 0));
+
+        if(password_textField.getText().equals(""))
+            password_textField.setBackground(new Color(191, 0, 0));
+        
+        if(confirm_password_textField.getText().equals(""))
+            confirm_password_textField.setBackground(new Color(191, 0, 0));
+        
+        if(name_textField1.getText().equals(""))
+            name_textField1.setBackground(new Color(191, 0, 0));
+
+        if(surname_textField.getText().equals(""))
+            surname_textField.setBackground(new Color(191, 0, 0));
+        
+        if(phone_number_textField.getText().equals(""))
+            phone_number_textField.setBackground(new Color(191, 0, 0));
+
+        if(postal_code_textField.getText().equals(""))
+            postal_code_textField.setBackground(new Color(191, 0, 0));
+
+        if(street_textField.getText().equals(""))
+            street_textField.setBackground(new Color(191, 0, 0));
+        
+        if(street_number_textField.getText().equals(""))
+            street_number_textField.setBackground(new Color(191, 0, 0));
+
+        if(city_textField.getText().equals(""))
+            city_textField.setBackground(new Color(191, 0, 0));
+
+        missing_value_label.setText("Some fields are empty!!");
+    }
+
     private void back_to_home_screen_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_to_home_screen_buttonActionPerformed
         homeScreen();
     }//GEN-LAST:event_back_to_home_screen_buttonActionPerformed
@@ -368,13 +425,17 @@ public class SignUpScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_street_number_textFieldActionPerformed
 
-    private void street_number_textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_street_number_textField1ActionPerformed
+    private void street_textFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_street_textFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_street_number_textField1ActionPerformed
+    }//GEN-LAST:event_street_textFieldActionPerformed
 
     private void city_textFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_city_textFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_city_textFieldActionPerformed
+
+    private void singUp_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singUp_buttonActionPerformed
+        SignUpMissingField();
+    }//GEN-LAST:event_singUp_buttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -388,6 +449,7 @@ public class SignUpScreen extends javax.swing.JFrame {
     private javax.swing.JLabel country_label1;
     private javax.swing.JLabel email_label;
     private javax.swing.JTextField email_textField;
+    private javax.swing.JLabel missing_value_label;
     private javax.swing.JLabel name_label;
     private javax.swing.JTextField name_textField1;
     private javax.swing.JLabel password_label;
@@ -400,8 +462,9 @@ public class SignUpScreen extends javax.swing.JFrame {
     private javax.swing.JButton singUp_button;
     private javax.swing.JLabel street_number_label;
     private javax.swing.JTextField street_number_textField;
-    private javax.swing.JTextField street_number_textField1;
+    private javax.swing.JTextField street_textField;
     private javax.swing.JLabel surname_label;
     private javax.swing.JTextField surname_textField;
     // End of variables declaration//GEN-END:variables
+
 }

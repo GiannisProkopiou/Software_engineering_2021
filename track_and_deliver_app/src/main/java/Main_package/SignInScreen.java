@@ -117,7 +117,7 @@ public class SignInScreen extends javax.swing.JFrame {
                             .addComponent(signIn_button, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                             .addComponent(singIn_email_txt)
                             .addComponent(jPasswordField1))))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
             .addGroup(singIn_panelLayout.createSequentialGroup()
                 .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
