@@ -87,7 +87,7 @@
                   <Component id="back_to_home_screen_button" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Component id="singInScreen_welcomeLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="277" max="32767" attributes="0"/>
+                  <EmptySpace pref="202" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="singIn_email_label" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="singIn_email_txt" alignment="3" min="-2" max="-2" attributes="0"/>

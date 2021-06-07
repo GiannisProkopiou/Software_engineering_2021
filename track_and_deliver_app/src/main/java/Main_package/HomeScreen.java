@@ -11,12 +11,14 @@ public class HomeScreen extends javax.swing.JFrame {
     
     //methods
     public void signUp() {
-        //show sugnUp window
+        new SignUpScreen().setVisible(true);
+        dispose();
     }
     public void signIn() {
         
-        dispose();
+        
         new SignInScreen().setVisible(true);
+        dispose();
         
     }
     @SuppressWarnings("unchecked")
@@ -31,6 +33,12 @@ public class HomeScreen extends javax.swing.JFrame {
         signIn_button = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        signUp_individual_button = new javax.swing.JButton();
+        signUp_company_button = new javax.swing.JButton();
+
+        //make unclickalbe buttons unti signUp is pressed
+        signUp_individual_button.setEnabled(false);
+        signUp_company_button.setEnabled(false);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -70,22 +78,50 @@ public class HomeScreen extends javax.swing.JFrame {
         jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea2.setRows(5);
         jTextArea2.setText("This is a desktop app created by:\n\tArsenopoulos Vasileios\n\tIliopoulou Stavroula\n\tKontarinis Apostolos\n\tProkopiou Ioannis\n\tSina Ioannis\nCreated for CEID course Software Engineering\n\n\t\t\t\t\t         Copyright© 2021\n\n\t");
+        jTextArea2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane2.setViewportView(jTextArea2);
+
+        signUp_individual_button.setBackground(new java.awt.Color(51, 51, 51));
+        signUp_individual_button.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        signUp_individual_button.setForeground(new java.awt.Color(191, 0, 0));
+        signUp_individual_button.setText("Individual");
+        signUp_individual_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUp_individual_buttonActionPerformed(evt);
+            }
+        });
+
+        signUp_company_button.setBackground(new java.awt.Color(51, 51, 51));
+        signUp_company_button.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        signUp_company_button.setForeground(new java.awt.Color(191, 0, 0));
+        signUp_company_button.setText("Company\n");
+        signUp_company_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUp_company_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout homeScreen_panelLayout = new javax.swing.GroupLayout(homeScreen_panel);
         homeScreen_panel.setLayout(homeScreen_panelLayout);
         homeScreen_panelLayout.setHorizontalGroup(
             homeScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homeScreen_panelLayout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(homeScreen_welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150))
-            .addGroup(homeScreen_panelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(homeScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(signIn_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(singUp_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(homeScreen_panelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(homeScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addComponent(signIn_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(singUp_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(homeScreen_panelLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(homeScreen_welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 140, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homeScreen_panelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(signUp_company_button, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(signUp_individual_button, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         homeScreen_panelLayout.setVerticalGroup(
@@ -93,12 +129,16 @@ public class HomeScreen extends javax.swing.JFrame {
             .addGroup(homeScreen_panelLayout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(homeScreen_welcomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addComponent(signIn_button, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(singUp_button, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addGroup(homeScreen_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(signUp_individual_button, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signUp_company_button, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -106,7 +146,7 @@ public class HomeScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(homeScreen_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(homeScreen_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +157,9 @@ public class HomeScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void singUp_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singUp_buttonActionPerformed
-        // TODO add your handling code here:
+
+        signUp_individual_button.setEnabled(true);
+        signUp_company_button.setEnabled(true);
     }//GEN-LAST:event_singUp_buttonActionPerformed
 
     private void signIn_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signIn_buttonActionPerformed
@@ -125,6 +167,14 @@ public class HomeScreen extends javax.swing.JFrame {
         signIn();
         
     }//GEN-LAST:event_signIn_buttonActionPerformed
+
+    private void signUp_individual_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUp_individual_buttonActionPerformed
+        signUp();
+    }//GEN-LAST:event_signUp_individual_buttonActionPerformed
+
+    private void signUp_company_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUp_company_buttonActionPerformed
+        signUp();
+    }//GEN-LAST:event_signUp_company_buttonActionPerformed
 
    
     public static void main(String args[]) {
@@ -151,16 +201,10 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton signIn_button;
+    private javax.swing.JButton signUp_company_button;
+    private javax.swing.JButton signUp_individual_button;
     private javax.swing.JButton singUp_button;
     // End of variables declaration//GEN-END:variables
 }
 
 
-
-
-
-//public Login_GUI() {
-//        setResizable(false);
-//        initComponents();
-//        setDate();
-//    }
