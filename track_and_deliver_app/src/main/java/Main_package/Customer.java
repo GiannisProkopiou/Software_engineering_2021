@@ -9,7 +9,7 @@ public class Customer {
     private String customer_email;
     private String customer_password;
     private int postal_code;
-    private int street_num;
+    private String street_num;
     private String street;
     private String city;
     private String country;
@@ -20,7 +20,7 @@ public class Customer {
     
     //constructor
     public Customer(String customer_email, String customer_password, int postal_code, 
-            int street_num, String street, String city, String country, String customer_name,
+            String street_num, String street, String city, String country, String customer_name,
             String customer_surname, String customer_phone_number, Subscription_state customer_subscription) {
 
                 this.customer_email = customer_email;
@@ -49,7 +49,7 @@ public class Customer {
         this.postal_code = postal_code;
     }
 
-    public void setStreetNum(int street_num) {
+    public void setStreetNum(String street_num) {
         this.street_num = street_num;
     }
 
@@ -89,7 +89,7 @@ public class Customer {
         return postal_code;
     }
 
-    public int getStreetNum() {
+    public String getStreetNum() {
         return street_num;
     }
 

@@ -1,6 +1,7 @@
 package Main_package;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 public class SignUpScreen extends javax.swing.JFrame {
 
@@ -350,39 +351,81 @@ public class SignUpScreen extends javax.swing.JFrame {
         dispose();
     }
     
-    public void SignUpMissingField() {
+    public boolean isPasswordOk(String password) {
+        if(password.length() < 8) {
+            JOptionPane.showMessageDialog(null, "Password must be at least 8 characters long.");
+            return false;
+        }
+        else 
+            return true;
+    }
+    
+    public boolean samePasswords(String password, String confirm_password) {
+        if(!password.equals(confirm_password)) {
+            JOptionPane.showMessageDialog(null, "Password and Confirm Password must be identical.");
+            return false;
+        }
+        else
+            return true;
 
-        if(email_textField.getText().equals(""))
+    }
+    
+    public boolean SignUpNoMissingField() {
+
+        boolean no_errors = true;
+        if(email_textField.getText().equals("")) {
             email_textField.setBackground(new Color(191, 0, 0));
+            no_errors = no_errors && false;
+        }
 
-        if(password_textField.getText().equals(""))
+        if(password_textField.getText().equals("") ) {
             password_textField.setBackground(new Color(191, 0, 0));
+            no_errors = no_errors && false;
+        }
         
-        if(confirm_password_textField.getText().equals(""))
+        if(confirm_password_textField.getText().equals("")) {
             confirm_password_textField.setBackground(new Color(191, 0, 0));
+            no_errors = no_errors && false;
+        }
         
-        if(name_textField1.getText().equals(""))
+        if(name_textField1.getText().equals("")) {
             name_textField1.setBackground(new Color(191, 0, 0));
+            no_errors = no_errors && false;
+        }
 
-        if(surname_textField.getText().equals(""))
+        if(surname_textField.getText().equals("")) {
             surname_textField.setBackground(new Color(191, 0, 0));
+            no_errors = no_errors && false;
+        }
         
-        if(phone_number_textField.getText().equals(""))
+        if(phone_number_textField.getText().equals("")) {
             phone_number_textField.setBackground(new Color(191, 0, 0));
+            no_errors = no_errors && false;
+        }
 
-        if(postal_code_textField.getText().equals(""))
+        if(postal_code_textField.getText().equals("")) {
             postal_code_textField.setBackground(new Color(191, 0, 0));
+            no_errors = no_errors && false;
+        }
 
-        if(street_textField.getText().equals(""))
+        if(street_textField.getText().equals("")) {
             street_textField.setBackground(new Color(191, 0, 0));
+            no_errors = no_errors && false;
+        }
         
-        if(street_number_textField.getText().equals(""))
+        if(street_number_textField.getText().equals("")) {
             street_number_textField.setBackground(new Color(191, 0, 0));
+            no_errors = no_errors && false;
+        }
 
-        if(city_textField.getText().equals(""))
+        if(city_textField.getText().equals("")) {
             city_textField.setBackground(new Color(191, 0, 0));
+            no_errors = no_errors && false;
+        }
+        if(!no_errors)
+            missing_value_label.setText("Some fields are empty!!");
 
-        missing_value_label.setText("Some fields are empty!!");
+        return no_errors;
     }
 
     private void back_to_home_screen_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_to_home_screen_buttonActionPerformed
@@ -434,7 +477,26 @@ public class SignUpScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_city_textFieldActionPerformed
 
     private void singUp_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singUp_buttonActionPerformed
-        SignUpMissingField();
+        
+        if (isPasswordOk(password_textField.getText()) && samePasswords(password_textField.getText(), confirm_password_textField.getText()) && SignUpNoMissingField())
+        {
+            Form f = new Form(
+                email_textField.getText(), password_textField.getText(),
+                name_textField1.getText(), surname_textField.getText(),
+                phone_number_textField.getText(), Integer.parseInt(postal_code_textField.getText()), 
+                street_textField.getText(), street_number_textField.getText(),
+                country_ComboBox.getSelectedItem().toString(), city_textField.getText(),
+                Subscription_state.BASIC);
+            boolean successful_conn = f.commit();
+            if (successful_conn) {
+                JOptionPane.showMessageDialog(null, "Successful account creation!");
+                homeScreen();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Cannot establish connection to Database!");
+            }            
+        }
+        
     }//GEN-LAST:event_singUp_buttonActionPerformed
 
 

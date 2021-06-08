@@ -9,7 +9,7 @@ public class Company extends Customer{
 
     //constructor
     public Company(String company_email, String company_password, int postal_code,
-        int street_num, String street, String city, String country, 
+        String street_num, String street, String city, String country, 
         String company_phone_number, Subscription_state company_subscription, String company_name, int company_afm) {
             super(company_email, company_password, postal_code, street_num, street, city, country,"", "", company_phone_number, company_subscription);
             this.company_name = company_name;

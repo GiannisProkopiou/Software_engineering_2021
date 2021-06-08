@@ -1,6 +1,11 @@
 
 package Main_package;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class HomeScreen extends javax.swing.JFrame {
 
     
@@ -183,10 +188,10 @@ public class HomeScreen extends javax.swing.JFrame {
             new HomeScreen().setVisible(true);
         });
         //testing
-        Customer c = new Customer("apos@gmail.com", "ak12345", 14122, 
-            6, "Trikoupi", "Athens", "Greece", "Apos",
-            "Konti", "6955", Subscription_state.BASIC);
-        System.out.println(c.getCountry());
+        /*Customer c = new Customer("apos@gmail.com", "ak12345", 14122,
+        "6A", "Trikoupi", "Athens", "Greece", "Apos",
+        "Konti", "6955", Subscription_state.BASIC);
+        System.out.println(c.getCountry());*/
     }
     
     //Initial app screen to choose register or singIn
