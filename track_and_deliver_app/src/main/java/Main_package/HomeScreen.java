@@ -164,7 +164,6 @@ public class HomeScreen extends javax.swing.JFrame {
     private void singUp_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singUp_buttonActionPerformed
 
         signUp_individual_button.setEnabled(true);
-        signUp_company_button.setEnabled(true);
     }//GEN-LAST:event_singUp_buttonActionPerformed
 
     private void signIn_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signIn_buttonActionPerformed
@@ -178,7 +177,8 @@ public class HomeScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_signUp_individual_buttonActionPerformed
 
     private void signUp_company_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUp_company_buttonActionPerformed
-        signUp();
+        //signUp();
+        //to be done
     }//GEN-LAST:event_signUp_company_buttonActionPerformed
 
    
@@ -195,9 +195,6 @@ public class HomeScreen extends javax.swing.JFrame {
     }
     
     //Initial app screen to choose register or singIn
- 
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel homeScreen_panel;

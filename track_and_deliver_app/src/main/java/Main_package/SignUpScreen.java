@@ -7,6 +7,8 @@ public class SignUpScreen extends javax.swing.JFrame {
 
     public SignUpScreen() {
         initComponents();
+        //fills fields to test register page
+        fillFieldsToTest();
     }
 
     
@@ -344,6 +346,16 @@ public class SignUpScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //methods
+    //test function
+    public void fillFieldsToTest() {
+        name_textField1.setText("Ioannis");
+        surname_textField.setText("Sina");
+        phone_number_textField.setText("+306912345678");
+        postal_code_textField.setText("84400");
+        street_textField.setText("Prodromos");
+        street_number_textField.setText("1");
+        city_textField.setText("Paros");
+    }
     public void homeScreen() {
         
         //go back to home screen
