@@ -41,10 +41,6 @@ public class HomeScreen extends javax.swing.JFrame {
         signUp_individual_button = new javax.swing.JButton();
         signUp_company_button = new javax.swing.JButton();
 
-        //make unclickalbe buttons unti signUp is pressed
-        signUp_individual_button.setEnabled(false);
-        signUp_company_button.setEnabled(false);
-
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -62,7 +58,7 @@ public class HomeScreen extends javax.swing.JFrame {
         homeScreen_welcomeLabel.setText("T&D");
 
         singUp_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        singUp_button.setText("Sing up");
+        singUp_button.setText("Sign up");
         singUp_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 singUp_buttonActionPerformed(evt);
@@ -185,7 +181,9 @@ public class HomeScreen extends javax.swing.JFrame {
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(() -> {
-            new HomeScreen().setVisible(true);
+            //new HomeScreen().setVisible(true);
+            new CustomerHomeScreen().setVisible(true);
+            //new AddPackageScreen().setVisible(true);
         });
         //testing
         /*Customer c = new Customer("apos@gmail.com", "ak12345", 14122,

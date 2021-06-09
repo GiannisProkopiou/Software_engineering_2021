@@ -26,6 +26,11 @@ public class SignInScreen extends javax.swing.JFrame {
         dispose();
     }
     
+    private void customerHomeScreen() {
+        new CustomerHomeScreen().setVisible(true);
+        dispose();
+    }
+    
     private void forgotPassword() {
         
         new ForgotPassword().setVisible(true);
@@ -231,6 +236,7 @@ public class SignInScreen extends javax.swing.JFrame {
                 //set visible simple user main screen customer screen
                     case 0:
                         //create customer object 
+                        customerHomeScreen();
                     case 1:
                         //create delivery_man object
                 
@@ -240,6 +246,7 @@ public class SignInScreen extends javax.swing.JFrame {
                 }
                 //Make login screen invisivble
                 //setVisible(false);     
+                
             }
             conn.close();
            
