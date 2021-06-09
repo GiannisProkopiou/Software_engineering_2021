@@ -14,3 +14,15 @@ Iliopoulou Stavroula\
 Kontarinis Apostolos\
 Prokopiou Ioannis\
 Sina Ioannis 
+
+# Steps to run :runner:
+
+Run as root
+
+```
+git clone https://github.com/IoannisSina/Software_engineering_2021
+cd Software_engineering_2021
+```
+1. Download MySQL workbench or use Apache server for the Database
+2. In DBconnect class change the properties of the connection
+3. Open the project using NetBeans or Any other IDE and run
