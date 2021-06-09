@@ -2,7 +2,7 @@
 
 Introduction:
 
-In the course of Software Technology in the department of computer engineering and informatics we were asked to implement a non-existent software.
+In the course of Software Technology in the department of Computer Engineering and Informatics we were asked to implement a non-existent software.
 So after discussions about the type of software and its wider use we created the following application.
 
 Information about the application:
