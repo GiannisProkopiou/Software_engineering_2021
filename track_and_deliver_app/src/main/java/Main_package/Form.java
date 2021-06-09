@@ -1,7 +1,6 @@
 package Main_package;
 
-import static java.lang.Math.random;
-import static java.lang.StrictMath.random;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
@@ -9,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Base64;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.SecretKeyFactory;
@@ -51,11 +49,9 @@ public class Form {
     }
     
     //methods
-    public String encryptPassword(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
+    private String encryptPassword(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
         byte[] salt = new byte[16];
-        Random random = new Random();
-        random.nextBytes(salt);
-        KeySpec spec = new PBEKeySpec("password".toCharArray(), salt, 65536, 128);
+        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
         SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
         byte[] hash = f.generateSecret(spec).getEncoded();
         Base64.Encoder enc = Base64.getEncoder();

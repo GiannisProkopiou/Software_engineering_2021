@@ -1,5 +1,6 @@
 package Main_package;
 
+import java.util.Random;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -8,7 +9,7 @@ public class SignUpScreen extends javax.swing.JFrame {
     public SignUpScreen() {
         initComponents();
         //fills fields to test register page
-        fillFieldsToTest();
+        randomSignUpValues();
     }
 
     
@@ -346,15 +347,30 @@ public class SignUpScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //methods
-    //test function
-    public void fillFieldsToTest() {
-        name_textField1.setText("Ioannis");
-        surname_textField.setText("Sina");
-        phone_number_textField.setText("+306912345678");
-        postal_code_textField.setText("84400");
+    //Random fields function
+    private void randomSignUpValues() {
+        //----------Randomness to fields-------------------
+        String[][] names = {{"Arsenopoulos", "Vasileios"}, {"Iliopoulou", "Stavroula"}, 
+            {"Kontarinis", "Apostolos"}, {"Prokopiou", "Ioannis"}, {"Sina", "Ioannis"}};
+        
+        String[] cities = {"Thessaloniki", "Athens", "Patra", "Madrid", "Chania"};
+        
+        String[] phone_numbers = {"+306910293847", "+306901909023", "+306988334402", 
+        "+306901019234", "+306910293847"};
+        
+        
+        Random rand = new Random();
+
+        // Obtain a number between [0 - 4].
+        int rand_int = rand.nextInt(5);
+        //-------------------------------------------------
+        name_textField1.setText(names[rand_int][1]);
+        surname_textField.setText(names[rand_int][0]);
+        phone_number_textField.setText(phone_numbers[rand.nextInt(5)]);
+        postal_code_textField.setText(Integer.toString(1000 + rand.nextInt(9999)));
         street_textField.setText("Prodromos");
         street_number_textField.setText("1");
-        city_textField.setText("Paros");
+        city_textField.setText(cities[rand.nextInt(5)]);
     }
     public void homeScreen() {
         

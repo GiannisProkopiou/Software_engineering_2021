@@ -1,7 +1,13 @@
 package Main_package;
 
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.sql.*;
+import java.util.Base64;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import javax.swing.JOptionPane;
 
 public class SignInScreen extends javax.swing.JFrame {
@@ -13,11 +19,26 @@ public class SignInScreen extends javax.swing.JFrame {
     }
     
     //methods
-    public void homeScreen() {
+    private void homeScreen() {
         
         //go back to home screen
         new HomeScreen().setVisible(true);
         dispose();
+    }
+    
+    private void forgotPassword() {
+        
+        new ForgotPassword().setVisible(true);
+    }
+
+    //check hashed password
+    private String encryptPassword(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        byte[] salt = new byte[16];
+        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
+        SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        byte[] hash = f.generateSecret(spec).getEncoded();
+        Base64.Encoder enc = Base64.getEncoder();
+        return enc.encodeToString(hash);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +50,7 @@ public class SignInScreen extends javax.swing.JFrame {
         singIn_email_label = new javax.swing.JLabel();
         singIn_passwordl_label = new javax.swing.JLabel();
         singIn_email_txt = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password_textField = new javax.swing.JPasswordField();
         signIn_button = new javax.swing.JButton();
         forgotPassword_button = new javax.swing.JButton();
         back_to_home_screen_button = new javax.swing.JButton();
@@ -63,9 +84,9 @@ public class SignInScreen extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setBackground(new java.awt.Color(240, 240, 240));
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        password_textField.setBackground(new java.awt.Color(240, 240, 240));
+        password_textField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        password_textField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         signIn_button.setBackground(new java.awt.Color(51, 51, 51));
         signIn_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -83,6 +104,11 @@ public class SignInScreen extends javax.swing.JFrame {
         forgotPassword_button.setForeground(new java.awt.Color(191, 0, 0));
         forgotPassword_button.setText("Forgot Password;");
         forgotPassword_button.setBorder(null);
+        forgotPassword_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forgotPassword_buttonActionPerformed(evt);
+            }
+        });
 
         back_to_home_screen_button.setBackground(new java.awt.Color(51, 51, 51));
         back_to_home_screen_button.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -116,7 +142,7 @@ public class SignInScreen extends javax.swing.JFrame {
                         .addGroup(singIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(signIn_button, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                             .addComponent(singIn_email_txt)
-                            .addComponent(jPasswordField1))))
+                            .addComponent(password_textField))))
                 .addContainerGap(108, Short.MAX_VALUE))
             .addGroup(singIn_panelLayout.createSequentialGroup()
                 .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,7 +161,7 @@ public class SignInScreen extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(singIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(singIn_passwordl_label)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(password_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(forgotPassword_button)
                 .addGap(69, 69, 69)
@@ -170,14 +196,15 @@ public class SignInScreen extends javax.swing.JFrame {
         //----------------------
         Connection conn = DBconnect.GetConnection(); // creates and returns connection object;
         //----------------------
-        String[] queries = {"SELECT name, surname, password FROM customer WHERE email=?", 
-            "SELECT name, surname, password FROM delivery_man WHERE email=?", 
-            "SELECT name, surname, password, working_company FROM employee WHERE email=?"};
+        String[] queries = {"SELECT * FROM customer WHERE email=? and password=?", 
+            "SELECT * FROM delivery_man WHERE email=? and password=?", 
+            "SELECT * FROM employee WHERE email=? and password=?"};
+        int user_type;
+
         try{
             //query 0: simple user
             //query 1: delivery man user
             //query 2: employee user
-            int user_type;
             PreparedStatement pst;
             ResultSet rs = null;
             for(user_type=0; user_type < 3; user_type++) {
@@ -185,6 +212,7 @@ public class SignInScreen extends javax.swing.JFrame {
                 //chech the type of the user
                 pst = conn.prepareStatement(queries[user_type]);
                 pst.setString(1, singIn_email_txt.getText());
+                pst.setString(2, encryptPassword(password_textField.getText()));
                 rs = pst.executeQuery();
                 
                 if(rs.next()) break;
@@ -195,27 +223,25 @@ public class SignInScreen extends javax.swing.JFrame {
             //if user_type == 2 then user is employee user
             if(user_type == 3) 
                 JOptionPane.showMessageDialog(null, "Invalid Username or password");
-            else {
+            else {//if 
                 var user_name = rs.getString("name");
                 var user_surname = rs.getString("surname");
                 JOptionPane.showMessageDialog(null, "Welcome "+ user_name + " "+ user_surname);
                 switch (user_type) {
-                //set visible simple user main screen
+                //set visible simple user main screen customer screen
                     case 0:
-                        break;
-                //set visible delivery man user main screen
+                        //create customer object 
                     case 1:
-                        break;
-                //set visible employee user
+                        //create delivery_man object
+                
                     default:
+                        //will be implemented in the future
                         break;
                 }
                 //Make login screen invisivble
                 //setVisible(false);     
             }
-            
-            
-            
+            conn.close();
            
         }catch(Exception ex){JOptionPane.showMessageDialog(null, ex);}
     }//GEN-LAST:event_signIn_buttonActionPerformed
@@ -224,10 +250,14 @@ public class SignInScreen extends javax.swing.JFrame {
         homeScreen();
     }//GEN-LAST:event_back_to_home_screen_buttonActionPerformed
 
+    private void forgotPassword_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forgotPassword_buttonActionPerformed
+        forgotPassword();
+    }//GEN-LAST:event_forgotPassword_buttonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back_to_home_screen_button;
     private javax.swing.JButton forgotPassword_button;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField password_textField;
     private javax.swing.JButton signIn_button;
     private javax.swing.JLabel singIn_email_label;
     private javax.swing.JTextField singIn_email_txt;
