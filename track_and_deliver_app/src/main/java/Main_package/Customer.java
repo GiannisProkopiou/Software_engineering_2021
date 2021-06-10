@@ -35,6 +35,10 @@ public class Customer {
                 this.customer_phone_number = customer_phone_number;
                 this.customer_subscription = customer_subscription;
     }
+
+    
+        
+
    
     //setters
     public void setCustomerEmail(String customer_email) {

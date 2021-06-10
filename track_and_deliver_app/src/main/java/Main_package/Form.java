@@ -73,7 +73,7 @@ public class Form {
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex);
         }
         //---------------------
-        String query = "INSERT INTO customer VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"; 
+        String query = "INSERT INTO customer VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"; 
         PreparedStatement pst;
         try {
             pst = conn.prepareStatement(query);
@@ -88,6 +88,7 @@ public class Form {
             pst.setString (9, this.user_surname);
             pst.setString (10, hashed_password);
             pst.setString (11, null);
+            pst.setString(12, this.phone_num);
             pst.execute();
             conn.close();
             return true;

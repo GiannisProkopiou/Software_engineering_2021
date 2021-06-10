@@ -1,99 +1,186 @@
 
 package Main_package;
 
+import java.util.Date;
+import java.util.Random;
 public class AddPackageScreen extends javax.swing.JFrame {
 
-    public AddPackageScreen() {
+    private String customer_email;
+    public AddPackageScreen(String customer_email) {
         initComponents();
+        this.customer_email = customer_email;
     }
+    
+    //methods
+    private void signIn() {
+        new SignInScreen().setVisible(true);
+        dispose();
+    }
+    
+    private Package mockPackage() {
+        Random rand = new Random();
+        int shipment_number = Integer.parseInt(add_package_textField.getText());
+        Date estimated_delivery_date = new Date();
+        
+        int rand_take_away = rand.nextInt(2); //0 or 1
+        boolean take_away = true ? rand_take_away == 1: false;
 
+        Date departure_date = new Date();
+        double weight = rand.nextInt(1000) + 1;
+
+        String[] sending_companies = {"ACS", "SPEEDEX", "DHL", "GENIKI", "ELTA COURIER"};
+        String sending_company = sending_companies[rand.nextInt(5)];
+
+        String dimensions = "30x40x100";
+        int delivery_attempts = rand.nextInt(10);
+
+        Package_state state;
+        int rand_package_state = rand.nextInt(3);
+
+        switch(rand_package_state) {
+
+            case 0:
+                state = Package_state.DELIVERED;
+            case 1:
+                state = Package_state.IN_TRANSIT;
+            default:
+                state = Package_state.ON_HOLD;
+        }
+
+        Package new_package = new Package(
+            shipment_number, estimated_delivery_date, take_away,
+            departure_date, weight, sending_company, 
+            dimensions, delivery_attempts, state
+        );
+        
+        return new_package;
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        tndLabel = new javax.swing.JLabel();
-        addPackageLabel = new javax.swing.JLabel();
-        addPackageButton = new javax.swing.JToggleButton();
+        AddPackage_Panel = new javax.swing.JPanel();
+        javax.swing.JLabel AddPackageScreen_welcomeLabel = new javax.swing.JLabel();
+        back_to_home_screen_button = new javax.swing.JButton();
+        add_package_label = new javax.swing.JLabel();
+        add_package_textField = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBounds(new java.awt.Rectangle(480, 720, 480, 720));
+        setTitle("Add Package Screen");
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        AddPackage_Panel.setBackground(new java.awt.Color(51, 51, 51));
 
-        tndLabel.setBackground(new java.awt.Color(102, 102, 102));
-        tndLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        tndLabel.setForeground(new java.awt.Color(191, 0, 0));
-        tndLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tndLabel.setText("T&D");
+        AddPackageScreen_welcomeLabel.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        AddPackageScreen_welcomeLabel.setForeground(new java.awt.Color(191, 0, 0));
+        AddPackageScreen_welcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        AddPackageScreen_welcomeLabel.setText("T&D");
 
-        addPackageLabel.setBackground(new java.awt.Color(51, 51, 51));
-        addPackageLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        addPackageLabel.setForeground(new java.awt.Color(191, 0, 0));
-        addPackageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        addPackageLabel.setText("Add your Package here");
-
-        addPackageButton.setBackground(new java.awt.Color(51, 51, 51));
-        addPackageButton.setForeground(new java.awt.Color(191, 0, 0));
-        addPackageButton.setText("ADD");
-        addPackageButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        addPackageButton.addActionListener(new java.awt.event.ActionListener() {
+        back_to_home_screen_button.setBackground(new java.awt.Color(51, 51, 51));
+        back_to_home_screen_button.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        back_to_home_screen_button.setForeground(new java.awt.Color(255, 255, 255));
+        back_to_home_screen_button.setText("<");
+        back_to_home_screen_button.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        back_to_home_screen_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addPackageButtonActionPerformed(evt);
+                back_to_home_screen_buttonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        add_package_label.setBackground(new java.awt.Color(51, 51, 51));
+        add_package_label.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        add_package_label.setForeground(new java.awt.Color(255, 255, 255));
+        add_package_label.setText("Tracking number:");
+
+        add_package_textField.setBackground(new java.awt.Color(204, 204, 204));
+        add_package_textField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_package_textFieldActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("ADD");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout AddPackage_PanelLayout = new javax.swing.GroupLayout(AddPackage_Panel);
+        AddPackage_Panel.setLayout(AddPackage_PanelLayout);
+        AddPackage_PanelLayout.setHorizontalGroup(
+            AddPackage_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(AddPackageScreen_welcomeLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(AddPackage_PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tndLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addPackageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(AddPackage_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AddPackage_PanelLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(add_package_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
+                    .addGroup(AddPackage_PanelLayout.createSequentialGroup()
+                        .addGroup(AddPackage_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(add_package_label)
+                            .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(200, Short.MAX_VALUE)
-                .addComponent(addPackageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(200, 200, 200))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(tndLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(addPackageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+        AddPackage_PanelLayout.setVerticalGroup(
+            AddPackage_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AddPackage_PanelLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(AddPackageScreen_welcomeLabel)
+                .addGap(75, 75, 75)
+                .addComponent(add_package_label)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addPackageButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(451, Short.MAX_VALUE))
+                .addGroup(AddPackage_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_package_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(AddPackage_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(AddPackage_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void back_to_home_screen_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_to_home_screen_buttonActionPerformed
+        signIn();
+    }//GEN-LAST:event_back_to_home_screen_buttonActionPerformed
 
-    private void addPackageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPackageButtonActionPerformed
+    private void add_package_textFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_package_textFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_add_package_textFieldActionPerformed
 
-    }//GEN-LAST:event_addPackageButtonActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //create package item and insert
+        mockPackage().commit(customer_email);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton addPackageButton;
-    private javax.swing.JLabel addPackageLabel;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel tndLabel;
+    private javax.swing.JPanel AddPackage_Panel;
+    private javax.swing.JLabel add_package_label;
+    private javax.swing.JTextField add_package_textField;
+    private javax.swing.JButton back_to_home_screen_button;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

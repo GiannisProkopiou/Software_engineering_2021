@@ -19,7 +19,7 @@ public class ForgotPassword extends javax.swing.JFrame {
 
     public ForgotPassword() {
         initComponents();
-        test();
+        //test();
         
     }
     

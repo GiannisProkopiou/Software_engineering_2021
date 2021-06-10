@@ -1,16 +1,14 @@
 
 package Main_package;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class HomeScreen extends javax.swing.JFrame {
 
     
     public HomeScreen() {
         initComponents();
+        signUp_individual_button.setEnabled(false);
+        signUp_company_button.setEnabled(false);
     }
 
     
@@ -182,8 +180,9 @@ public class HomeScreen extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(() -> {
             //new HomeScreen().setVisible(true);
-            new CustomerHomeScreen().setVisible(true);
+            //new CustomerHomeScreen().setVisible(true);
             //new AddPackageScreen().setVisible(true);
+            new SignInScreen().setVisible(true);
         });
         //testing
         /*Customer c = new Customer("apos@gmail.com", "ak12345", 14122,

@@ -15,7 +15,8 @@ public class SignInScreen extends javax.swing.JFrame {
     
     public SignInScreen() {
         initComponents();
-        
+        singIn_email_txt.setText("sina@gmail.com");
+        password_textField.setText("12345678");
     }
     
     //methods
@@ -26,8 +27,8 @@ public class SignInScreen extends javax.swing.JFrame {
         dispose();
     }
     
-    private void customerHomeScreen() {
-        new CustomerHomeScreen().setVisible(true);
+    private void customerHomeScreen(Customer current_customer) {
+        new CustomerHomeScreen(current_customer).setVisible(true);
         dispose();
     }
     
@@ -205,13 +206,13 @@ public class SignInScreen extends javax.swing.JFrame {
             "SELECT * FROM delivery_man WHERE email=? and password=?", 
             "SELECT * FROM employee WHERE email=? and password=?"};
         int user_type;
-
+        PreparedStatement pst;
+        ResultSet rs = null;
         try{
             //query 0: simple user
             //query 1: delivery man user
             //query 2: employee user
-            PreparedStatement pst;
-            ResultSet rs = null;
+            
             for(user_type=0; user_type < 3; user_type++) {
                 
                 //chech the type of the user
@@ -235,8 +236,15 @@ public class SignInScreen extends javax.swing.JFrame {
                 switch (user_type) {
                 //set visible simple user main screen customer screen
                     case 0:
-                        //create customer object 
-                        customerHomeScreen();
+                        //create customer object
+                        Customer current_customer = new Customer(
+                                rs.getString("email"), rs.getString("password"),
+                                Integer.parseInt(rs.getString("postal_code")), rs.getString("street_number"), 
+                                rs.getString("street"), rs.getString("city"), rs.getString("country"), 
+                                rs.getString("name"), rs.getString("surname"), 
+                                rs.getString("phone_number"), Subscription_state.BASIC
+                        );
+                        customerHomeScreen(current_customer);
                     case 1:
                         //create delivery_man object
                 
