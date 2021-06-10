@@ -129,7 +129,7 @@ CREATE TABLE `customer` (
 
 LOCK TABLES `customer` WRITE;
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` VALUES ('Apos@yahoo.com','basic','Afghanistan','Athens',1,'Prodromos',1246,'Apostolos','Kontarinis','/KUE9C8cgJvc2StveKcMzw==',NULL,'+306910293847'),('sina@gmail.com','basic','Afghanistan','Chania',1,'Prodromos',2017,'Ioannis','Sina','/KUE9C8cgJvc2StveKcMzw==',NULL,'+306910293847'),('stav@hotmail.com','basic','Afghanistan','Thessaloniki',1,'Prodromos',10417,'Stavroula','Iliopoulou','/KUE9C8cgJvc2StveKcMzw==',NULL,'+306910293847');
+INSERT INTO `customer` VALUES ('Apos@yahoo.com','basic','Afghanistan','Athens',1,'Prodromos',1246,'Apostolos','Kontarinis','/KUE9C8cgJvc2StveKcMzw==',NULL,'+306910293847'),('sina@gmail.com','basic','Greece','Chania',3,'Naoussa',84400,'Ioannis','Sina','/KUE9C8cgJvc2StveKcMzw==',NULL,'+3012345678'),('stav@hotmail.com','basic','Afghanistan','Thessaloniki',1,'Prodromos',10417,'Stavroula','Iliopoulou','/KUE9C8cgJvc2StveKcMzw==',NULL,'+306910293847');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -330,7 +330,7 @@ CREATE TABLE `package` (
 
 LOCK TABLES `package` WRITE;
 /*!40000 ALTER TABLE `package` DISABLE KEYS */;
-INSERT INTO `package` VALUES (45643,'2021-09-03',0,'2021-09-03',446,'ACS','30x40x100',4,'on_hold','sina@gmail.com','2021-09-03',NULL),(454523542,'2021-09-03',1,'2021-09-03',956,'ELTA COURIER','30x40x100',5,'on_hold','sina@gmail.com','2021-09-03',NULL);
+INSERT INTO `package` VALUES (45643,'2021-09-03',0,'2021-09-03',446,'ACS','30x40x100',4,'on_hold','sina@gmail.com','2021-09-03',NULL),(43214321,'2021-09-03',0,'2021-09-03',781,'DHL','30x40x100',5,'on_hold','sina@gmail.com','2021-09-03',NULL),(454523542,'2021-09-03',1,'2021-09-03',956,'ELTA COURIER','30x40x100',5,'on_hold','sina@gmail.com','2021-09-03',NULL);
 /*!40000 ALTER TABLE `package` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,4 +402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-10  3:25:12
+-- Dump completed on 2021-06-10 16:28:22

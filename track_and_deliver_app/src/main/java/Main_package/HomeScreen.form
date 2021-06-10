@@ -135,6 +135,7 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sign up"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="singUp_buttonActionPerformed"/>
@@ -146,6 +147,7 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sign in"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signIn_buttonActionPerformed"/>
@@ -193,6 +195,7 @@
               <Color blue="0" green="0" red="bf" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Individual"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signUp_individual_buttonActionPerformed"/>
@@ -210,6 +213,7 @@
               <Color blue="0" green="0" red="bf" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Company&#xa;"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signUp_company_buttonActionPerformed"/>

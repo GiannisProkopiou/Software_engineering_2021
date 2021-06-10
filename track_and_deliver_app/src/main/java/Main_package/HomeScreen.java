@@ -57,6 +57,7 @@ public class HomeScreen extends javax.swing.JFrame {
 
         singUp_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         singUp_button.setText("Sign up");
+        singUp_button.setFocusable(false);
         singUp_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 singUp_buttonActionPerformed(evt);
@@ -65,6 +66,7 @@ public class HomeScreen extends javax.swing.JFrame {
 
         signIn_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         signIn_button.setText("Sign in");
+        signIn_button.setFocusable(false);
         signIn_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signIn_buttonActionPerformed(evt);
@@ -84,6 +86,7 @@ public class HomeScreen extends javax.swing.JFrame {
         signUp_individual_button.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         signUp_individual_button.setForeground(new java.awt.Color(191, 0, 0));
         signUp_individual_button.setText("Individual");
+        signUp_individual_button.setFocusable(false);
         signUp_individual_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signUp_individual_buttonActionPerformed(evt);
@@ -94,6 +97,7 @@ public class HomeScreen extends javax.swing.JFrame {
         signUp_company_button.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         signUp_company_button.setForeground(new java.awt.Color(191, 0, 0));
         signUp_company_button.setText("Company\n");
+        signUp_company_button.setFocusable(false);
         signUp_company_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signUp_company_buttonActionPerformed(evt);

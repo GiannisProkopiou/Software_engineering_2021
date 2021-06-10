@@ -98,7 +98,8 @@ public class SignInScreen extends javax.swing.JFrame {
         signIn_button.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         signIn_button.setForeground(new java.awt.Color(255, 255, 255));
         signIn_button.setText("Sign in");
-        signIn_button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        signIn_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        signIn_button.setFocusable(false);
         signIn_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signIn_buttonActionPerformed(evt);
@@ -110,6 +111,7 @@ public class SignInScreen extends javax.swing.JFrame {
         forgotPassword_button.setForeground(new java.awt.Color(191, 0, 0));
         forgotPassword_button.setText("Forgot Password;");
         forgotPassword_button.setBorder(null);
+        forgotPassword_button.setFocusable(false);
         forgotPassword_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forgotPassword_buttonActionPerformed(evt);
@@ -121,6 +123,7 @@ public class SignInScreen extends javax.swing.JFrame {
         back_to_home_screen_button.setForeground(new java.awt.Color(255, 255, 255));
         back_to_home_screen_button.setText("<");
         back_to_home_screen_button.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        back_to_home_screen_button.setFocusable(false);
         back_to_home_screen_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 back_to_home_screen_buttonActionPerformed(evt);
@@ -160,7 +163,7 @@ public class SignInScreen extends javax.swing.JFrame {
                 .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(singInScreen_welcomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addGroup(singIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(singIn_email_label)
                     .addComponent(singIn_email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

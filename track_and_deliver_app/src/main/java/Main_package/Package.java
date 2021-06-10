@@ -111,7 +111,7 @@ public class Package {
     }
     
     //other methods
-    public void commit(String customer_email){
+    public void commit(Customer current_signed_in_customer){
         //----------------------
         Connection conn = DBconnect.GetConnection(); // creates and returns connection object;
         Random rand = new Random();
@@ -136,7 +136,7 @@ public class Package {
             else
                 state_to_insert = "on_hold";
             pst.setString (9, state_to_insert);
-            pst.setString (10, customer_email);
+            pst.setString (10, current_signed_in_customer.getCustomerEmail());
             pst.setDate(11, java.sql.Date.valueOf("2021-09-04"));
             pst.setString(12, null);
             pst.execute();

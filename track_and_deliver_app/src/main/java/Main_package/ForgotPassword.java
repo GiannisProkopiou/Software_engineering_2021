@@ -106,6 +106,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         back_to_signIn_screen_button.setForeground(new java.awt.Color(255, 255, 255));
         back_to_signIn_screen_button.setText("<");
         back_to_signIn_screen_button.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        back_to_signIn_screen_button.setFocusable(false);
         back_to_signIn_screen_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 back_to_signIn_screen_buttonActionPerformed(evt);
@@ -145,6 +146,7 @@ public class ForgotPassword extends javax.swing.JFrame {
         submit_button.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         submit_button.setForeground(new java.awt.Color(255, 255, 255));
         submit_button.setText("Submit");
+        submit_button.setFocusable(false);
         submit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submit_buttonActionPerformed(evt);

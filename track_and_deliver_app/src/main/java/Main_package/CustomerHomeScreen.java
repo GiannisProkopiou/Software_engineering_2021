@@ -1,7 +1,15 @@
 
 package Main_package;
 
-import javax.swing.ImageIcon;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 
 public class CustomerHomeScreen extends javax.swing.JFrame {
@@ -13,6 +21,45 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
         this.current_signed_in_customer = current_signed_in_customer;
         welcome_label.setText("Welcome " + current_signed_in_customer.getCustomerName() + " " + current_signed_in_customer.getCustomerSurname());
         menuPanel.setVisible(false);
+        showPackages();
+        
+        //Disable rate delivery man and Archive if customer has bascic Subscription
+        if(current_signed_in_customer.getCustomerSubscription() == Subscription_state.BASIC) {
+
+            rateButton.setEnabled(false);
+            historyButton.setEnabled(false);
+        }
+    }
+    
+    //methods
+    //show packages to table
+    private void showPackages() {
+        
+        //----------------------
+        Connection conn = DBconnect.GetConnection(); // creates and returns connection object;
+        //----------------------
+        PreparedStatement pst;
+        ResultSet rs = null;
+        DefaultTableModel model = (DefaultTableModel)packages_table.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[4];
+        String sql="SELECT shipment_number, sending_company, estimated_delivery_date,"+
+                "state FROM package WHERE customer_email=?";
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, current_signed_in_customer.getCustomerEmail());
+            rs = pst.executeQuery();
+            while(rs.next()){
+                row[0] = rs.getString("shipment_number");
+                row[1] = rs.getString("sending_company");
+                row[2] = rs.getString("state");
+                row[3] = rs.getString("estimated_delivery_date");
+                model.addRow(row);
+            }
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -28,8 +75,10 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
         rateButton = new javax.swing.JButton();
         settingsButton = new javax.swing.JButton();
         historyButton = new javax.swing.JButton();
+        upgrade_subscription_Button = new javax.swing.JButton();
+        signOutButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        packages_table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CustomerHomeScreen");
@@ -41,7 +90,7 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         welcome_label.setBackground(new java.awt.Color(51, 51, 51));
-        welcome_label.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        welcome_label.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         welcome_label.setForeground(new java.awt.Color(191, 0, 0));
         welcome_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -49,7 +98,8 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
         menu_button.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         menu_button.setForeground(new java.awt.Color(191, 0, 0));
         menu_button.setText("Menu");
-        menu_button.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        menu_button.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        menu_button.setFocusable(false);
         menu_button.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         menu_button.setMinimumSize(new java.awt.Dimension(127, 40));
         menu_button.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +161,27 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
             }
         });
 
+        upgrade_subscription_Button.setBackground(new java.awt.Color(51, 51, 51));
+        upgrade_subscription_Button.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        upgrade_subscription_Button.setForeground(new java.awt.Color(191, 0, 0));
+        upgrade_subscription_Button.setText("PREMIUM");
+        upgrade_subscription_Button.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        upgrade_subscription_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upgrade_subscription_ButtonActionPerformed(evt);
+            }
+        });
+
+        signOutButton.setBackground(new java.awt.Color(51, 51, 51));
+        signOutButton.setForeground(new java.awt.Color(191, 0, 0));
+        signOutButton.setText("Sign out");
+        signOutButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        signOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signOutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
@@ -120,6 +191,8 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
             .addComponent(settingsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(rateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(historyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(upgrade_subscription_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(signOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,12 +206,17 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
                 .addComponent(historyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(settingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(upgrade_subscription_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addComponent(signOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTable1.setBackground(new java.awt.Color(51, 51, 51));
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        packages_table.setBackground(new java.awt.Color(51, 51, 51));
+        packages_table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        packages_table.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        packages_table.setForeground(new java.awt.Color(255, 255, 255));
+        packages_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -154,7 +232,12 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        packages_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                packages_tableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(packages_table);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -215,7 +298,7 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void addPackageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPackageButtonActionPerformed
-         new AddPackageScreen(current_signed_in_customer.getCustomerEmail()).setVisible(true);
+         new AddPackageScreen(current_signed_in_customer).setVisible(true);
          dispose();
     }//GEN-LAST:event_addPackageButtonActionPerformed
 
@@ -225,12 +308,54 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_rateButtonActionPerformed
 
     private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
-        //Go to settings Screen
+        new SettingsScreen(current_signed_in_customer).setVisible(true);
+        dispose();
     }//GEN-LAST:event_settingsButtonActionPerformed
 
     private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_historyButtonActionPerformed
+
+    private void packages_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_packages_tableMouseClicked
+        //----------------------
+        Connection conn = DBconnect.GetConnection(); // creates and returns connection object;
+        //----------------------
+        PreparedStatement pst;
+        ResultSet rs = null;
+        int index = packages_table.getSelectedRow();
+        TableModel model = packages_table.getModel();
+        String shipment_number = model.getValueAt(index, 0).toString();
+        String sql = "SELECT * FROM package WHERE shipment_number=?";
+        try{
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, shipment_number);
+            rs = pst.executeQuery();
+            if(rs.next()){
+                Date departure_date = rs.getDate("departure_date");
+                double weight = rs.getDouble("weight");
+                String dimensions = rs.getString("dimensions");
+                int delivery_attempts = rs.getInt("delivery_attempts");
+                Date date_of_register = rs.getDate("date_of_register");
+               
+                JOptionPane.showMessageDialog(null, "Departure date: "+departure_date+"\nPackage weight: " + weight
+                    + "\nPackage dimensions: " + dimensions + "\nDelivery attempts: " + delivery_attempts + 
+                        "\nDate of register: " + date_of_register);
+            }
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        
+    }//GEN-LAST:event_packages_tableMouseClicked
+
+    private void upgrade_subscription_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upgrade_subscription_ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upgrade_subscription_ButtonActionPerformed
+
+    private void signOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutButtonActionPerformed
+        new SignInScreen().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_signOutButtonActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -239,11 +364,13 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
     private javax.swing.JButton homeButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton menu_button;
+    private javax.swing.JTable packages_table;
     private javax.swing.JButton rateButton;
     private javax.swing.JButton settingsButton;
+    private javax.swing.JButton signOutButton;
+    private javax.swing.JButton upgrade_subscription_Button;
     private javax.swing.JLabel welcome_label;
     // End of variables declaration//GEN-END:variables
 }

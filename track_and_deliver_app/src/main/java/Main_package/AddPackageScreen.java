@@ -5,15 +5,15 @@ import java.util.Date;
 import java.util.Random;
 public class AddPackageScreen extends javax.swing.JFrame {
 
-    private String customer_email;
-    public AddPackageScreen(String customer_email) {
+    private Customer current_signed_in_customer;
+    public AddPackageScreen(Customer current_signed_in_customer) {
         initComponents();
-        this.customer_email = customer_email;
+        this.current_signed_in_customer = current_signed_in_customer;
     }
     
     //methods
-    private void signIn() {
-        new SignInScreen().setVisible(true);
+    private void CustomerHomeScreen() {
+        new CustomerHomeScreen(current_signed_in_customer).setVisible(true);
         dispose();
     }
     
@@ -162,7 +162,7 @@ public class AddPackageScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void back_to_home_screen_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_to_home_screen_buttonActionPerformed
-        signIn();
+        CustomerHomeScreen();
     }//GEN-LAST:event_back_to_home_screen_buttonActionPerformed
 
     private void add_package_textFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_package_textFieldActionPerformed
@@ -171,7 +171,7 @@ public class AddPackageScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //create package item and insert
-        mockPackage().commit(customer_email);
+        mockPackage().commit(current_signed_in_customer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
