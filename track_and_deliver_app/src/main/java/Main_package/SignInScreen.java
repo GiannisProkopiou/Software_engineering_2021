@@ -240,12 +240,15 @@ public class SignInScreen extends javax.swing.JFrame {
                 //set visible simple user main screen customer screen
                     case 0:
                         //create customer object
+                        Subscription_state customer_state = Subscription_state.BASIC;
+                        if(rs.getString("subscription").equals("premium"))
+                            customer_state = Subscription_state.PREMIUM;
                         Customer current_customer = new Customer(
                                 rs.getString("email"), rs.getString("password"),
                                 Integer.parseInt(rs.getString("postal_code")), rs.getString("street_number"), 
                                 rs.getString("street"), rs.getString("city"), rs.getString("country"), 
                                 rs.getString("name"), rs.getString("surname"), 
-                                rs.getString("phone_number"), Subscription_state.BASIC
+                                rs.getString("phone_number"), customer_state
                         );
                         customerHomeScreen(current_customer);
                     case 1:

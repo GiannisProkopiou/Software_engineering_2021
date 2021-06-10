@@ -28,6 +28,9 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
 
             rateButton.setEnabled(false);
             historyButton.setEnabled(false);
+            orderPackagesButton.setEnabled(false);
+        } else {
+            upgrade_subscription_Button.setEnabled(false);
         }
     }
     
@@ -77,11 +80,13 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
         historyButton = new javax.swing.JButton();
         upgrade_subscription_Button = new javax.swing.JButton();
         signOutButton = new javax.swing.JButton();
+        orderPackagesButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         packages_table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CustomerHomeScreen");
+        setTitle("CustomerHomeScreen - Basic Subscription");
+        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(51, 51, 51));
         setBounds(new java.awt.Rectangle(0, 0, 480, 720));
         setMinimumSize(new java.awt.Dimension(472, 700));
@@ -182,6 +187,16 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
             }
         });
 
+        orderPackagesButton.setBackground(new java.awt.Color(51, 51, 51));
+        orderPackagesButton.setForeground(new java.awt.Color(191, 0, 0));
+        orderPackagesButton.setText("Order packages");
+        orderPackagesButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        orderPackagesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderPackagesButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
@@ -193,6 +208,7 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
             .addComponent(historyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(upgrade_subscription_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(signOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(orderPackagesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         menuPanelLayout.setVerticalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,8 +223,10 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(settingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(orderPackagesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(upgrade_subscription_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(signOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -349,13 +367,18 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_packages_tableMouseClicked
 
     private void upgrade_subscription_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upgrade_subscription_ButtonActionPerformed
-        // TODO add your handling code here:
+        new PayingScreen(current_signed_in_customer).setVisible(true);
+        dispose();
     }//GEN-LAST:event_upgrade_subscription_ButtonActionPerformed
 
     private void signOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutButtonActionPerformed
         new SignInScreen().setVisible(true);
         dispose();
     }//GEN-LAST:event_signOutButtonActionPerformed
+
+    private void orderPackagesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPackagesButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_orderPackagesButtonActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -366,6 +389,7 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton menu_button;
+    private javax.swing.JButton orderPackagesButton;
     private javax.swing.JTable packages_table;
     private javax.swing.JButton rateButton;
     private javax.swing.JButton settingsButton;
