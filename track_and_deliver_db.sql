@@ -167,11 +167,11 @@ DROP TABLE IF EXISTS `delivers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `delivers` (
-  `delivery_man_afm` int(11) NOT NULL,
+  `delivery_man_afm` int(11),
   `shipment_number` int(11) NOT NULL,
   `state` enum('in_transit','delivered') NOT NULL,
   `assignemnt_date` date NOT NULL,
-  PRIMARY KEY (`delivery_man_afm`,`shipment_number`),
+  PRIMARY KEY (`shipment_number`),
   KEY `delivers_shipment_number` (`shipment_number`),
   CONSTRAINT `delivers_delivery_man_afm` FOREIGN KEY (`delivery_man_afm`) REFERENCES `delivery_man` (`afm`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `delivers_shipment_number` FOREIGN KEY (`shipment_number`) REFERENCES `package` (`shipment_number`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -213,6 +213,31 @@ CREATE TABLE `delivery_man` (
 LOCK TABLES `delivery_man` WRITE;
 /*!40000 ALTER TABLE `delivery_man` DISABLE KEYS */;
 /*!40000 ALTER TABLE `delivery_man` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `deliver_man_ratings`
+--
+
+DROP TABLE IF EXISTS `deliver_man_ratings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `deliver_man_ratings` (
+  `deliver_man_afm` int(11) NOT NULL,
+  `stars` int(11) NOT NULL,
+  `comments` TEXT NOT NULL,
+  `customer_email` varchar(255) NOT NULL,
+  PRIMARY KEY (`deliver_man_afm`, `customer_email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `deliver_man_ratings`
+--
+
+LOCK TABLES `deliver_man_ratings` WRITE;
+/*!40000 ALTER TABLE `deliver_man_ratings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `deliver_man_ratings` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -330,7 +355,7 @@ CREATE TABLE `package` (
 
 LOCK TABLES `package` WRITE;
 /*!40000 ALTER TABLE `package` DISABLE KEYS */;
-INSERT INTO `package` VALUES (45643,'2021-09-03',0,'2021-09-03',446,'ACS','30x40x100',4,'on_hold','sina@gmail.com','2021-09-03',NULL),(43214321,'2021-09-03',0,'2021-09-03',781,'DHL','30x40x100',5,'on_hold','sina@gmail.com','2021-09-03',NULL),(454523542,'2021-09-03',1,'2021-09-03',956,'ELTA COURIER','30x40x100',5,'on_hold','sina@gmail.com','2021-09-03',NULL);
+INSERT INTO `package` VALUES (45643,'2021-09-03',0,'2021-09-03',446,'ACS','30x40x100',4,'on_hold','sina@gmail.com','2021-09-03',NULL),(656565,'2021-09-03',1,'2021-09-03',103,'GENIKI','30x40x100',6,'on_hold','sina@gmail.com','2021-09-03',NULL),(43214321,'2021-09-03',0,'2021-09-03',781,'DHL','30x40x100',5,'on_hold','sina@gmail.com','2021-09-03',NULL),(454523542,'2021-09-03',1,'2021-09-03',956,'ELTA COURIER','30x40x100',5,'on_hold','sina@gmail.com','2021-09-03',NULL);
 /*!40000 ALTER TABLE `package` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,4 +427,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-06-10 16:28:22
+-- Dump completed on 2021-06-10 22:37:06
