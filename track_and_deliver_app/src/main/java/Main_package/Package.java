@@ -1,8 +1,12 @@
 package Main_package;
 
+import static java.lang.Math.abs;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -118,11 +122,27 @@ public class Package {
         String query = "INSERT INTO package VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"; 
         PreparedStatement pst;
         try {
+            
+            Date date = new Date();  
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+            String strDate = formatter.format(date);           
+            
+            Random r = new Random();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            //Getting current date
+            Calendar cal = Calendar.getInstance();
+            //Number of Days to add
+            cal.add(Calendar.DAY_OF_MONTH, abs(r.nextInt()%31));  
+            //Date after adding the days to the current date
+            String newDate = sdf.format(cal.getTime());  
+
+
+            
             pst = conn.prepareStatement(query);
             pst.setString (1, Integer.toString(this.shipment_number));
-            pst.setDate(2, java.sql.Date.valueOf("2021-09-04"));
+            pst.setDate(2, java.sql.Date.valueOf(newDate));
             pst.setInt (3, rand.nextInt(2));
-            pst.setDate(4, java.sql.Date.valueOf("2021-09-04"));
+            pst.setDate(4, java.sql.Date.valueOf(strDate));
             pst.setDouble (5, this.weight);
             pst.setString (6, this.sending_company);
             pst.setString (7, this.dimensions);
@@ -137,7 +157,7 @@ public class Package {
                 state_to_insert = "on_hold";
             pst.setString (9, state_to_insert);
             pst.setString (10, current_signed_in_customer.getCustomerEmail());
-            pst.setDate(11, java.sql.Date.valueOf("2021-09-04"));
+            pst.setDate(11, java.sql.Date.valueOf(strDate));
             pst.setString(12, null);
             pst.execute();
             conn.close();

@@ -19,20 +19,31 @@ import javax.swing.JOptionPane;
 public class SettingsScreen extends javax.swing.JFrame {
     
     private Customer current_signed_in_customer;
+    private DeliveryMan current_signed_in_delivery_man;
 
     public SettingsScreen(Customer current_signed_in_customer) {
         initComponents();
         this.current_signed_in_customer = current_signed_in_customer;
-        fillFields();
+        fillFields_customer();
     }
 
+    public SettingsScreen(DeliveryMan current_signed_in_delivery_man) {
+        initComponents();
+        this.current_signed_in_delivery_man = current_signed_in_delivery_man;
+        fillFields_delivery_man();
+    }
+    
     //methods
     private void customerScreen(Customer current_signed_in_customer) {
         new CustomerHomeScreen(current_signed_in_customer).setVisible(true);
         dispose();
     }
 
-    private void fillFields() {
+    private void fillFields_delivery_man() {
+        
+    }
+    
+    private void fillFields_customer() {
         
         //FILL alll fields except password
         emai_textField.setText(current_signed_in_customer.getCustomerEmail());

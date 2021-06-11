@@ -41,10 +41,13 @@ public class AddPackageScreen extends javax.swing.JFrame {
 
             case 0:
                 state = Package_state.DELIVERED;
+                break;
             case 1:
                 state = Package_state.IN_TRANSIT;
+                break;
             default:
                 state = Package_state.ON_HOLD;
+                break;
         }
 
         Package new_package = new Package(
@@ -123,7 +126,7 @@ public class AddPackageScreen extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(add_package_textField, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                     .addGroup(AddPackage_PanelLayout.createSequentialGroup()
                         .addGroup(AddPackage_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(add_package_label)
@@ -142,7 +145,7 @@ public class AddPackageScreen extends javax.swing.JFrame {
                 .addGroup(AddPackage_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_package_textField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
                 .addComponent(back_to_home_screen_button, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

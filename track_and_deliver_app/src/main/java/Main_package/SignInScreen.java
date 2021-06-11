@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Base64;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -21,7 +22,6 @@ public class SignInScreen extends javax.swing.JFrame {
     
     //methods
     private void homeScreen() {
-        
         //go back to home screen
         new HomeScreen().setVisible(true);
         dispose();
@@ -29,6 +29,11 @@ public class SignInScreen extends javax.swing.JFrame {
     
     private void customerHomeScreen(Customer current_customer) {
         new CustomerHomeScreen(current_customer).setVisible(true);
+        dispose();
+    }
+    
+    private void deliveryManScreen(DeliveryMan current_delivery_man) {
+        new DeliveryManScreen(current_delivery_man).setVisible(true);
         dispose();
     }
     
@@ -227,6 +232,17 @@ public class SignInScreen extends javax.swing.JFrame {
                 if(rs.next()) break;
             }
            
+            if(user_type == 3) {
+                pst = conn.prepareStatement(queries[1]);
+                pst.setString(1, singIn_email_txt.getText());
+                pst.setString(2, password_textField.getText());
+                rs = pst.executeQuery();
+                if(rs.next())
+                    user_type = 1;
+                System.out.println("HI");
+            }
+                
+           
             //if user_type == 0 then user is simple user
             //if user_type == 1 then user is delivery man user
             //if user_type == 2 then user is employee user
@@ -251,9 +267,28 @@ public class SignInScreen extends javax.swing.JFrame {
                                 rs.getString("phone_number"), customer_state
                         );
                         customerHomeScreen(current_customer);
+                        break;
                     case 1:
+                        System.out.println("User_type: "+user_type);
                         //create delivery_man object
-                
+                        ArrayList<Package> packages_to_be_delivered = new ArrayList<Package>();
+                        ArrayList<Rating> ratings = new ArrayList<Rating>(); 
+                        
+                        Delivery_man_state delivery_man_state = Delivery_man_state.AVAILABLE;
+                        if(rs.getString("state").equals("not_available"))
+                            delivery_man_state = Delivery_man_state.NOT_AVAILABLE;
+                        else if(rs.getString("state").equals("in_duty"))
+                            delivery_man_state = Delivery_man_state.IN_DUTY;
+                        
+                        DeliveryMan current_delivery_man = new DeliveryMan(
+                        rs.getString("email"), rs.getString("name"), 
+                        rs.getString("surname"), rs.getString("password"), rs.getString("phone"), 
+                        delivery_man_state, -1,
+                        packages_to_be_delivered, ratings);
+                        
+                        deliveryManScreen(current_delivery_man);
+                        break;
+                        
                     default:
                         //will be implemented in the future
                         break;
