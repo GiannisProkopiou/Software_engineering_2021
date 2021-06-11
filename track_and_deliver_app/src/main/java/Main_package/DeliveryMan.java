@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class DeliveryMan {
 
     //attributes
+    private int delivery_man_afm;
     private String delivery_man_email;
     private String delivery_man_name;
     private String delivery_man_surname;
@@ -15,10 +16,11 @@ public class DeliveryMan {
     private ArrayList<Package> packages_to_be_delivered;
     private ArrayList<Rating> ratings;
     //constructor
-    public DeliveryMan(String delivery_man_email, String delivery_man_name, String delivery_man_surname,
+    public DeliveryMan(int delivery_man_afm, String delivery_man_email, String delivery_man_name, String delivery_man_surname,
         String password, String phone, Delivery_man_state availability_state, double rating,
         ArrayList<Package> packages_to_be_delivered, ArrayList<Rating> ratings) {
-
+            
+            this.delivery_man_afm = delivery_man_afm;
             this.delivery_man_email = delivery_man_email;
             this.delivery_man_name = delivery_man_name;
             this.delivery_man_surname = delivery_man_surname;
@@ -31,6 +33,9 @@ public class DeliveryMan {
         }
     
     //setters
+    public void setDeliveryManAfm(int delivery_man_afm) {
+        this.delivery_man_afm = delivery_man_afm;
+    }
     public void setDeliveryManEmail(String delivery_man_email) {
         this.delivery_man_email = delivery_man_email;
     }
@@ -68,6 +73,10 @@ public class DeliveryMan {
     }
 
     //getters
+    
+    public int getDeliveryManAfm() {
+        return delivery_man_afm;
+    }
     
     public String getDeliveryManEmail() {
         return delivery_man_email;

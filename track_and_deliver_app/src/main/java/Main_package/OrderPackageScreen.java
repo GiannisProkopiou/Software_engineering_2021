@@ -77,7 +77,7 @@ public class OrderPackageScreen extends javax.swing.JFrame {
                     rs1 = pst1.executeQuery();
                     
                     if(rs1.next())
-                        row[1] = rs1.getString("name") + " " + rs.getString("surname");
+                        row[1] = rs1.getString("name") + " " + rs1.getString("surname");
                 }
                     
                 row[2] = rs.getString("state");

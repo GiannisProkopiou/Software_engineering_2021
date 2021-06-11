@@ -9,6 +9,8 @@ public class DeliveryManScreen extends javax.swing.JFrame {
         initComponents();
         this.current_signed_in_delivery_man = current_signed_in_delivery_man;
         welcome_label.setText("Welcome " + current_signed_in_delivery_man.getDeliveryManName());
+        historyButton.setEnabled(false);
+        settingsButton.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -33,7 +35,7 @@ public class DeliveryManScreen extends javax.swing.JFrame {
         welcome_label.setBackground(new java.awt.Color(51, 51, 51));
         welcome_label.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         welcome_label.setForeground(new java.awt.Color(191, 0, 0));
-        welcome_label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        welcome_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         menu_button.setBackground(new java.awt.Color(51, 51, 51));
         menu_button.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -56,6 +58,7 @@ public class DeliveryManScreen extends javax.swing.JFrame {
         homeButton.setForeground(new java.awt.Color(191, 0, 0));
         homeButton.setText("Home");
         homeButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        homeButton.setFocusable(false);
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeButtonActionPerformed(evt);
@@ -66,6 +69,7 @@ public class DeliveryManScreen extends javax.swing.JFrame {
         settingsButton.setForeground(new java.awt.Color(191, 0, 0));
         settingsButton.setText("Settings");
         settingsButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        settingsButton.setFocusable(false);
         settingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 settingsButtonActionPerformed(evt);
@@ -76,6 +80,7 @@ public class DeliveryManScreen extends javax.swing.JFrame {
         historyButton.setForeground(new java.awt.Color(191, 0, 0));
         historyButton.setText("Archive");
         historyButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        historyButton.setFocusable(false);
         historyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 historyButtonActionPerformed(evt);
@@ -86,6 +91,7 @@ public class DeliveryManScreen extends javax.swing.JFrame {
         signOutButton.setForeground(new java.awt.Color(191, 0, 0));
         signOutButton.setText("Sign out");
         signOutButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        signOutButton.setFocusable(false);
         signOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signOutButtonActionPerformed(evt);
@@ -96,6 +102,7 @@ public class DeliveryManScreen extends javax.swing.JFrame {
         orderPackagesButton.setForeground(new java.awt.Color(191, 0, 0));
         orderPackagesButton.setText("Accept packages");
         orderPackagesButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        orderPackagesButton.setFocusable(false);
         orderPackagesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orderPackagesButtonActionPerformed(evt);
@@ -195,12 +202,13 @@ public class DeliveryManScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_signOutButtonActionPerformed
 
     private void orderPackagesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderPackagesButtonActionPerformed
-        // TODO add your handling code here:
+        new AcceptPackagesScreen(current_signed_in_delivery_man).setVisible(true);
+        dispose();
     }//GEN-LAST:event_orderPackagesButtonActionPerformed
 
     private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
-        new SettingsScreen(current_signed_in_delivery_man).setVisible(true);
-        dispose();
+        // new SettingsScreen(current_signed_in_delivery_man).setVisible(true);
+        // dispose();
     }//GEN-LAST:event_settingsButtonActionPerformed
 
     

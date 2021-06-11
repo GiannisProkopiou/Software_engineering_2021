@@ -16,8 +16,8 @@ public class SignInScreen extends javax.swing.JFrame {
     
     public SignInScreen() {
         initComponents();
-        singIn_email_txt.setText("sina@gmail.com");
-        password_textField.setText("12345678");
+        singIn_email_txt.setText("tolis@gmail.com");
+        password_textField.setText("123456789");
     }
     
     //methods
@@ -270,7 +270,7 @@ public class SignInScreen extends javax.swing.JFrame {
                         conn.close();
                         break;
                     case 1:
-                        System.out.println("User_type: "+user_type);
+                        //System.out.println("User_type: "+user_type);
                         //create delivery_man object
                         ArrayList<Package> packages_to_be_delivered = new ArrayList<Package>();
                         ArrayList<Rating> ratings = new ArrayList<Rating>(); 
@@ -281,7 +281,7 @@ public class SignInScreen extends javax.swing.JFrame {
                         else if(rs.getString("state").equals("in_duty"))
                             delivery_man_state = Delivery_man_state.IN_DUTY;
                         
-                        DeliveryMan current_delivery_man = new DeliveryMan(
+                        DeliveryMan current_delivery_man = new DeliveryMan(rs.getInt("afm"),
                         rs.getString("email"), rs.getString("name"), 
                         rs.getString("surname"), rs.getString("password"), rs.getString("phone"), 
                         delivery_man_state, -1,
