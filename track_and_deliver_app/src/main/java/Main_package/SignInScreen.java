@@ -239,7 +239,6 @@ public class SignInScreen extends javax.swing.JFrame {
                 rs = pst.executeQuery();
                 if(rs.next())
                     user_type = 1;
-                System.out.println("HI");
             }
                 
            
@@ -251,7 +250,7 @@ public class SignInScreen extends javax.swing.JFrame {
             else {//if 
                 var user_name = rs.getString("name");
                 var user_surname = rs.getString("surname");
-                JOptionPane.showMessageDialog(null, "Welcome "+ user_name + " "+ user_surname);
+                
                 switch (user_type) {
                 //set visible simple user main screen customer screen
                     case 0:
@@ -266,7 +265,9 @@ public class SignInScreen extends javax.swing.JFrame {
                                 rs.getString("name"), rs.getString("surname"), 
                                 rs.getString("phone_number"), customer_state
                         );
+                        JOptionPane.showMessageDialog(null, "Welcome "+ user_name + " "+ user_surname);
                         customerHomeScreen(current_customer);
+                        conn.close();
                         break;
                     case 1:
                         System.out.println("User_type: "+user_type);

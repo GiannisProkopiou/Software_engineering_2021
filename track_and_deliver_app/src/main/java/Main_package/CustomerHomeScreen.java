@@ -16,6 +16,7 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
 
     private Customer current_signed_in_customer;
     //constructors
+   
     public CustomerHomeScreen(Customer current_signed_in_customer) {
         initComponents();
         this.current_signed_in_customer = current_signed_in_customer;
@@ -46,8 +47,7 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel)packages_table.getModel();
         model.setRowCount(0);
         Object[] row = new Object[4];
-        String sql="SELECT shipment_number, sending_company, estimated_delivery_date,"+
-                "state FROM package WHERE customer_email=?";
+        String sql= "SELECT shipment_number, sending_company, estimated_delivery_date, state FROM package WHERE customer_email=? AND shipment_number NOT IN (SELECT shipment_number FROM delivers)";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString(1, current_signed_in_customer.getCustomerEmail());
@@ -226,7 +226,7 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
                 .addComponent(orderPackagesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(upgrade_subscription_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(signOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -282,7 +282,7 @@ public class CustomerHomeScreen extends javax.swing.JFrame {
                     .addComponent(welcome_label, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
