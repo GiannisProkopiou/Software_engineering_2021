@@ -183,10 +183,10 @@ public class HomeScreen extends javax.swing.JFrame {
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(() -> {
-            //new HomeScreen().setVisible(true);
+            new HomeScreen().setVisible(true);
             //new CustomerHomeScreen().setVisible(true);
             //new AddPackageScreen().setVisible(true);
-            new SignInScreen().setVisible(true);
+            //new SignInScreen().setVisible(true);
         });
         //testing
         /*Customer c = new Customer("apos@gmail.com", "ak12345", 14122,

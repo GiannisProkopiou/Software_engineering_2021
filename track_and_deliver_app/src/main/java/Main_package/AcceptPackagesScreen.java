@@ -89,6 +89,7 @@ public class AcceptPackagesScreen extends javax.swing.JFrame {
         orderPackageButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Accept package screen");
         setMinimumSize(new java.awt.Dimension(480, 700));
         setResizable(false);
 
@@ -128,7 +129,7 @@ public class AcceptPackagesScreen extends javax.swing.JFrame {
 
         orderPackageButton.setBackground(new java.awt.Color(51, 51, 51));
         orderPackageButton.setForeground(new java.awt.Color(191, 0, 0));
-        orderPackageButton.setText("Order Package");
+        orderPackageButton.setText("Accept Package");
         orderPackageButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         orderPackageButton.setFocusable(false);
         orderPackageButton.addActionListener(new java.awt.event.ActionListener() {
