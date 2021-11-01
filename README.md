@@ -14,15 +14,14 @@ Track and Deliver (T&D) is a desktop application aiming to simplify postal servi
 
 
 **Tech Stack:** Java, MySQL, NetBeans
-# Team
 
-Our team consists of the following people:
+# Team 👪
 
-Arsenopoulos Vasileios\
-Iliopoulou Stavroula\
-Kontarinis Apostolos\
-Prokopiou Ioannis\
-Sina Ioannis 
+[Vasileios Arsenopoulos](https://github.com/SpiritVessel)\
+[Stavroula Iliopoulou](https://github.com/stavril)\
+[Apostolos Kontarinis](https://github.com/AposKonti)\
+[Ioannis Prokopiou](https://github.com/GiannisProkopiou)\
+[Ioannis Sina](https://github.com/IoannisSina)
 
 # Steps to run :runner:
 
@@ -36,12 +35,12 @@ cd Software_engineering_2021
 2. In DBconnect class change the properties of the connection
 3. Open the project using NetBeans or Any other IDE and run
 
-# Class diagram
+# Class diagram 📈
 
 ![Class_diagram_v1 0](https://user-images.githubusercontent.com/49285637/121759535-cfca2e00-cb2e-11eb-9cc4-141f3dbc997c.png)
 
 
-# Use cases
+# Use cases ⚡
 
 **Use-case-1: Sign in**
 
